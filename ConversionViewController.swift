@@ -16,6 +16,21 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         updateCelsiusLabel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let now = Date()
+        let day_begin = now.dateAt(hours: 5, minutes: 0)
+        let day_end = now.dateAt(hours: 19, minutes: 0)
+        
+        if now >=  day_begin &&
+            now <= day_end
+        {
+            let color = UIColor.darkGray
+            view.backgroundColor = color
+        }
+    }
+    
     @IBOutlet var celsiusLabel: UILabel!
     var farenheitValue: Measurement<UnitTemperature>? {
         didSet {
@@ -75,3 +90,16 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension Date
+{
+    func dateAt(hours: Int, minutes: Int) -> Date
+    {
+        let calendar = Calendar.current
+        var date_components = calendar.dateComponents([.year,.month,.day],from: Date())
+        date_components.hour = hours
+        date_components.minute = minutes
+        date_components.second = 0
+        let newDate = calendar.date(from: date_components)!
+        return newDate
+    }
+}

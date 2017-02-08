@@ -101,7 +101,26 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="116" y="122.78860569715144"/>
+            <point key="canvasLocation" x="106" y="52"/>
+        </scene>
+        <!--Web-->
+        <scene sceneID="8V0-1W-UdT">
+            <objects>
+                <viewController id="FaZ-wc-MWr" customClass="WebViewController" customModule="WorldTrotter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r0t-eJ-TQR"/>
+                        <viewControllerLayoutGuide type="bottom" id="H4h-Qt-ilR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Urh-Wl-gvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Web" id="5fK-Uo-IQU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOW-pU-7hy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="-241"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Hty-nO-xMb">
@@ -115,6 +134,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="GKR-bk-4g2"/>
                         <segue destination="kQ4-ld-1lD" kind="relationship" relationship="viewControllers" id="PcH-Tq-T6i"/>
+                        <segue destination="FaZ-wc-MWr" kind="relationship" relationship="viewControllers" id="pgT-0Y-oTd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8n-Ov-4ma" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,7 +149,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="xHd-Bx-Tjp"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="982" y="-735"/>
+            <point key="canvasLocation" x="1084" y="-1060"/>
         </scene>
     </scenes>
     <resources>
