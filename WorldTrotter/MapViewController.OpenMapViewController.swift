@@ -8,19 +8,30 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate,
+    CLLocationManagerDelegate {
     
     var mapView: MKMapView!
+
+    
+    /*let locationManager = CLLocationManager()
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+    */
     
     override func loadView() {
         // Create a map view
         mapView = MKMapView()
+        mapView.delegate = self
         
         //Set it as the view of this view controller
         view = mapView
         
-        let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
+        let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite", "My Location"])
         segmentedControl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         segmentedControl.selectedSegmentIndex=0
         
@@ -57,9 +68,22 @@ class MapViewController: UIViewController {
             mapView.mapType = .hybrid
         case 2:
             mapView.mapType = .satellite
+            self.mapView.showsUserLocation = false
+        case 3:
+            self.mapView.showsUserLocation = true
         default:
             break
         }
+    }
+    
+    func mapViewWillStartLocatingUser(_ mapView: MKMapView)
+    {
+        print("Start loading")
+    }
+    
+    func mapViewDidStopLocatingUser(_ mapView: MKMapView)
+    {
+        print("Stop loading")
     }
 }
 

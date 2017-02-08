@@ -23,8 +23,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         let day_begin = now.dateAt(hours: 5, minutes: 0)
         let day_end = now.dateAt(hours: 19, minutes: 0)
         
-        if now >=  day_begin &&
-            now <= day_end
+        if now <=  day_begin ||
+            now >= day_end
         {
             let color = UIColor.darkGray
             view.backgroundColor = color
