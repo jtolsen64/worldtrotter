@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B239F1E71E4ABAC600B31150 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B239F1E61E4ABAC600B31150 /* MapKit.framework */; };
+		B239F1E91E4AC01800B31150 /* MapViewController.OpenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239F1E81E4AC01800B31150 /* MapViewController.OpenMapViewController.swift */; };
 		B2C8D31C1E3EA2E700519750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8D31B1E3EA2E700519750 /* AppDelegate.swift */; };
 		B2C8D3211E3EA2E700519750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2C8D31F1E3EA2E700519750 /* Main.storyboard */; };
 		B2C8D3231E3EA2E700519750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2C8D3221E3EA2E700519750 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B239F1E61E4ABAC600B31150 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B239F1E81E4AC01800B31150 /* MapViewController.OpenMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.OpenMapViewController.swift; sourceTree = "<group>"; };
 		B2C8D3181E3EA2E700519750 /* WorldTrotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C8D31B1E3EA2E700519750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2C8D3201E3EA2E700519750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B239F1E71E4ABAC600B31150 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B239F1E51E4ABAC600B31150 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B239F1E61E4ABAC600B31150 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B2C8D30F1E3EA2E700519750 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +94,7 @@
 				B2C8D32F1E3EA2E700519750 /* WorldTrotterTests */,
 				B2C8D33A1E3EA2E700519750 /* WorldTrotterUITests */,
 				B2C8D3191E3EA2E700519750 /* Products */,
+				B239F1E51E4ABAC600B31150 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +117,7 @@
 				B2C8D3221E3EA2E700519750 /* Assets.xcassets */,
 				B2C8D3241E3EA2E700519750 /* LaunchScreen.storyboard */,
 				B2C8D3271E3EA2E700519750 /* Info.plist */,
+				B239F1E81E4AC01800B31150 /* MapViewController.OpenMapViewController.swift */,
 			);
 			path = WorldTrotter;
 			sourceTree = "<group>";
@@ -259,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B239F1E91E4AC01800B31150 /* MapViewController.OpenMapViewController.swift in Sources */,
 				B2C8D34A1E3EC00300519750 /* ConversionViewController.swift in Sources */,
 				B2C8D31C1E3EA2E700519750 /* AppDelegate.swift in Sources */,
 			);
@@ -505,6 +521,7 @@
 				B2C8D3421E3EA2E700519750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2C8D3431E3EA2E700519750 /* Build configuration list for PBXNativeTarget "WorldTrotterTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +530,7 @@
 				B2C8D3451E3EA2E700519750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2C8D3461E3EA2E700519750 /* Build configuration list for PBXNativeTarget "WorldTrotterUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +539,7 @@
 				B2C8D3481E3EA2E700519750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
