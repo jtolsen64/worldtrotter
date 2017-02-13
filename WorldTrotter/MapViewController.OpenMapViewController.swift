@@ -15,13 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     
     var mapView: MKMapView!
 
-    
     let locationManager = CLLocationManager()
-    /*locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.requestAlwaysAuthorization()
-    locationManager.startUpdatingLocation()
-    */
     
     override func loadView() {
         // Create a map view
@@ -74,7 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate,
             self.mapView.showsUserLocation = true
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
             
             locationManager.startUpdatingLocation()
         default:
@@ -92,16 +86,6 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         print("Stop loading")
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        let location = locations[0]
-        
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
-        let mylocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(mylocation, span)
-        mapView.setRegion(region, animated: true)
-        self.mapView.showsUserLocation = true
-        locationManager.stopUpdatingLocation()
-    }
 }
 
 
