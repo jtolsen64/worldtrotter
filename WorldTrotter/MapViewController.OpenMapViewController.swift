@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-import CoreLocation
+//import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate,
     CLLocationManagerDelegate {
@@ -16,8 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     var mapView: MKMapView!
 
     
-    /*let locationManager = CLLocationManager()
-    locationManager.delegate = self
+    let locationManager = CLLocationManager()
+    /*locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
     locationManager.requestAlwaysAuthorization()
     locationManager.startUpdatingLocation()
@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         // Create a map view
         mapView = MKMapView()
         mapView.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
         //Set it as the view of this view controller
         view = mapView
@@ -71,6 +72,11 @@ class MapViewController: UIViewController, MKMapViewDelegate,
             self.mapView.showsUserLocation = false
         case 3:
             self.mapView.showsUserLocation = true
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            
+            locationManager.startUpdatingLocation()
         default:
             break
         }
@@ -84,6 +90,17 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     func mapViewDidStopLocatingUser(_ mapView: MKMapView)
     {
         print("Stop loading")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        let location = locations[0]
+        
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
+        let mylocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(mylocation, span)
+        mapView.setRegion(region, animated: true)
+        self.mapView.showsUserLocation = true
+        locationManager.stopUpdatingLocation()
     }
 }
 
