@@ -110,36 +110,48 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     
     func showMyLocation()
     {
-        self.mapView.showsUserLocation = true
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        if(!myLocButtonPushed){
+            if(!pinButtonPushed){
+                lastLoc = self.mapView.centerCoordinate
+                lastSpan = self.mapView.region.span
+            }
+            self.mapView.showsUserLocation = true
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            pinButtonPushed=true
+        } else {
+            
+        }
     }
     
     func cyclePins()
     {
         lastLoc = self.mapView.centerCoordinate
         lastSpan = self.mapView.region.span
-        
+    }
+    
+    func makePins()
+    {
         //Set pins
         //Pin 1: Born: Salt Lake City
         let pin1 = MKPointAnnotation()
-        let coord1 = CLLocationCoordinate2D(latitude: , longitude: )
+        let coord1 = CLLocationCoordinate2D(latitude: 40.758701, longitude: -111.876183)
         pin1.coordinate = coord1
         mapView.addAnnotation(pin1)
         pins.append(pin1)
         
         //Pin 2: Currently at: High Point
         let pin2 = MKPointAnnotation()
-        let coord2 = CLLocationCoordinate2D(latitude: , longitude: )
+        let coord2 = CLLocationCoordinate2D(latitude: 35.9556923, longitude: -80.00531760000001)
         pin2.coordinate = coord2
         mapView.addAnnotation(pin2)
         pins.append(pin2)
         
         //Pin 3: Interesting place: ?
         let pin3 = MKPointAnnotation()
-        let coord3 = CLLocationCoordinate2D(latitude: , longitude: )
+        let coord3 = CLLocationCoordinate2D(latitude: 45.86111, longitude: 84.63056)
         pin3.coordinate = coord3
         mapView.addAnnotation(pin3)
         pins.append(pin3)
