@@ -17,10 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     let locationManager = CLLocationManager()
     var lastLoc: CLLocationCoordinate2D!
     var lastSpan: MKCoordinateSpan!
-    var pinButtonPushed: Bool = false
     var myLocButtonPushed: Bool = false
     var pins: [MKPointAnnotation]=[]
-    var currentPin = 0
+    var currentPin = 3
+    // currentPin = currentPin+1 %4
     
     override func loadView() {
         // Create a map view
@@ -30,6 +30,8 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         
         //Set it as the view of this view controller
         view = mapView
+        
+        makePins()
         
         //make segmented control
         let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
@@ -111,62 +113,74 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     func showMyLocation()
     {
         if(!myLocButtonPushed){
-            if(!pinButtonPushed){
-                lastLoc = self.mapView.centerCoordinate
-                lastSpan = self.mapView.region.span
-            }
+            myLocButtonPushed=true
             self.mapView.showsUserLocation = true
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-            pinButtonPushed=true
         } else {
-            
+            myLocButtonPushed=false
+            self.mapView.showsUserLocation = false
         }
     }
     
     func cyclePins()
     {
-        lastLoc = self.mapView.centerCoordinate
-        lastSpan = self.mapView.region.span
-    }
+        self.mapView.showsUserLocation = false
+        if(currentPin == 3 && !myLocButtonPushed){
+                lastLoc = self.mapView.centerCoordinate
+                lastSpan = self.mapView.region.span
+        }
+        currentPin = (currentPin+1)%4
+        if(!(currentPin==0)){
+            mapView.removeAnnotation(pins[currentPin-1])
+        }
+        if(!(currentPin==3)){
+            mapView.addAnnotation(pins[currentPin])
+            mapView.setCenter(pins[currentPin].coordinate, animated: true)
+        }
+        if(currentPin==3){
+            self.mapView.showsUserLocation = false
+        }
+   }
     
     func makePins()
     {
-        //Set pins
         //Pin 1: Born: Salt Lake City
         let pin1 = MKPointAnnotation()
         let coord1 = CLLocationCoordinate2D(latitude: 40.758701, longitude: -111.876183)
         pin1.coordinate = coord1
-        mapView.addAnnotation(pin1)
         pins.append(pin1)
         
         //Pin 2: Currently at: High Point
         let pin2 = MKPointAnnotation()
         let coord2 = CLLocationCoordinate2D(latitude: 35.9556923, longitude: -80.00531760000001)
         pin2.coordinate = coord2
-        mapView.addAnnotation(pin2)
         pins.append(pin2)
         
-        //Pin 3: Interesting place: ?
+        //Pin 3: Interesting place: Mackinac Island
         let pin3 = MKPointAnnotation()
         let coord3 = CLLocationCoordinate2D(latitude: 45.86111, longitude: 84.63056)
         pin3.coordinate = coord3
-        mapView.addAnnotation(pin3)
         pins.append(pin3)
         
     }
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
+    {
+        
+    }
     
     func mapViewWillStartLocatingUser(_ mapView: MKMapView)
     {
         print("Start loading")
+        if(currentPin==3){
+            lastLoc = self.mapView.centerCoordinate
+            lastSpan = self.mapView.region.span
+        }
     }
     
     func mapViewDidStopLocatingUser(_ mapView: MKMapView)
     {
         print("Stop loading")
+        mapView.setCenter(lastLoc, animated: true)
     }
 }
 
