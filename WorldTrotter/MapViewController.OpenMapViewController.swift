@@ -1,10 +1,12 @@
-//
-//  MapViewController.OpenMapViewController.swift
-//  WorldTrotter
-//
-//  Created by Jayden Olsen on 2/7/17.
-//  Copyright © 2017 Jayden Olsen. All rights reserved.
-//
+/* Author: Jayden Olsen
+   Date: 2/16/17
+   Class: CSC-2310
+ 
+   Comment: This view controller handles the map functions for World Trotter. It
+            uses the MKMapView and MKMapViewDelegate to show the user his/her location,
+            and to zoom in on a cycle of three preset pins. Also shows sattelite and hybrid views.
+ */
+
 
 import UIKit
 import MapKit
@@ -17,10 +19,8 @@ class MapViewController: UIViewController, MKMapViewDelegate,
     let locationManager = CLLocationManager()
     var lastLoc: CLLocationCoordinate2D!
     var lastSpan: MKCoordinateSpan!
-    var myLocButtonPushed: Bool = false
     var pins: [MKPointAnnotation]=[]
     var currentPin = 3
-    // currentPin = currentPin+1 %4
     
     override func loadView() {
         // Create a map view
@@ -47,7 +47,6 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         
         let scTopConstraint = segmentedControl.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor,
                                                                   constant: 8)
-        
         let margins = view.layoutMarginsGuide
         let scLeadingConstraint = segmentedControl.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
         let scTrailingConstraint = segmentedControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
@@ -56,47 +55,64 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         scLeadingConstraint.isActive = true
         scTrailingConstraint.isActive = true
         
+        
         //make my location button
-        let myLocButton = UIButton()
-        myLocButton.setTitle("My Location", for: .normal)
-        myLocButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        let myLocButton = UIButton.init(type: .system)
+        initButton(myLocButton)
+        
         myLocButton.addTarget(self,
-                              action: #selector(MapViewController.showMyLocation),
-                                   for: .touchUpInside)
-        myLocButton.translatesAutoresizingMaskIntoConstraints=false
-        view.addSubview(myLocButton)
+                         action: #selector(MapViewController.showMyLocation),
+                         for: .touchUpInside)
         
-        let lbTopConstraint = myLocButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                                  constant: -80)
+        myLocButton.setTitle("My Location", for: .normal)
         
-        let lbTrailingConstraint = myLocButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
-        lbTopConstraint.isActive = true
-        lbTrailingConstraint.isActive = true
+        let lbtrailingConstraint = myLocButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+        lbtrailingConstraint.isActive = true
         
         //make pins button
-        let pinButton = UIButton()
-        pinButton.setTitle("Pins", for: .normal)
-        pinButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        pinButton.addTarget(self,
-                            action: #selector(MapViewController.cyclePins),
-                              for: .touchUpInside)
-        pinButton.translatesAutoresizingMaskIntoConstraints=false
-        view.addSubview(pinButton)
+        let pinButton = UIButton.init(type: .system)
+        initButton(pinButton)
         
-        let pbBotConstraint = pinButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                               constant: -80)
+        pinButton.addTarget(self,
+                              action: #selector(MapViewController.cyclePins),
+                              for: .touchUpInside)
+        
+        pinButton.setTitle("Pins", for: .normal)
         
         let pbLeadingConstraint = pinButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
-        pbBotConstraint.isActive = true
         pbLeadingConstraint.isActive = true
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MapViewController loaded its view.")
     }
     
+    /*initButton sets up buttons. I tried to keep the buttons
+      as similar as possible so this one button can make both.
+      additional properties are created separately.
+    */
+    func initButton(_ Button: UIButton)
+    {
+        Button.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        Button.layer.cornerRadius = 5
+        Button.layer.borderWidth = 1
+        Button.layer.borderColor = UIColor.blue.cgColor
+        Button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        Button.setTitleColor(UIColor.white, for: UIControlState.highlighted)
+        Button.showsTouchWhenHighlighted = true
     
+        Button.translatesAutoresizingMaskIntoConstraints=false
+        view.addSubview(Button)
+        
+        let topConstraint = Button.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                                  constant: -80)
+        topConstraint.isActive = true
+    }
+    
+    //changes the map view according to the button pushed on the
+    //segment controller.
     func mapTypeChanged(_ segControl: UISegmentedControl) {
         switch segControl.selectedSegmentIndex {
         case 0:
@@ -110,37 +126,60 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         }
     }
     
+    /* showMyLocation sets showUserLocation to true, or false if 
+        showUserLocation is already true. The rest of the process
+        for zooming on the user's location is handled by the delegate
+        functions.
+    */
     func showMyLocation()
     {
-        if(!myLocButtonPushed){
-            myLocButtonPushed=true
+        print("My Location Button Pressed")
+        if(!self.mapView.showsUserLocation){
             self.mapView.showsUserLocation = true
         } else {
-            myLocButtonPushed=false
             self.mapView.showsUserLocation = false
         }
     }
     
+    /* cyclePins cycles through the preset pins, showing the 
+       current pin, and hiding the previous pin. On the third tap, 
+       the user is brought back to where he/she was previously on 
+       the map.
+    */
     func cyclePins()
     {
-        self.mapView.showsUserLocation = false
-        if(currentPin == 3 && !myLocButtonPushed){
+        print("Pin Button Pressed")
+        
+        //check if current map center can be recorded
+        if(currentPin == 3 && !self.mapView.showsUserLocation){
                 lastLoc = self.mapView.centerCoordinate
                 lastSpan = self.mapView.region.span
         }
+        
+        //stop showing user location
+        self.mapView.showsUserLocation = false
+        
+        //increment pin
         currentPin = (currentPin+1)%4
         if(!(currentPin==0)){
             mapView.removeAnnotation(pins[currentPin-1])
         }
         if(!(currentPin==3)){
             mapView.addAnnotation(pins[currentPin])
-            mapView.setCenter(pins[currentPin].coordinate, animated: true)
+            let span=MKCoordinateSpanMake(1,1)
+            let region=MKCoordinateRegionMake(pins[currentPin].coordinate, span)
+            mapView.setRegion(region, animated: true)
         }
+        
+        //when pins have been cycled through, return to previous map center and zoom.
         if(currentPin==3){
-            self.mapView.showsUserLocation = false
+            let span=MKCoordinateSpanMake(lastSpan.latitudeDelta,lastSpan.longitudeDelta)
+            let region=MKCoordinateRegionMake(lastLoc, span)
+            mapView.setRegion(region, animated: true)
         }
    }
     
+    //creates the three preset pins
     func makePins()
     {
         //Pin 1: Born: Salt Lake City
@@ -157,17 +196,26 @@ class MapViewController: UIViewController, MKMapViewDelegate,
         
         //Pin 3: Interesting place: Mackinac Island
         let pin3 = MKPointAnnotation()
-        let coord3 = CLLocationCoordinate2D(latitude: 45.86111, longitude: 84.63056)
+        let coord3 = CLLocationCoordinate2D(latitude: 45.84917, longitude: -84.61889)
         pin3.coordinate = coord3
         pins.append(pin3)
         
     }
     
+    // Shows the user's location zoomed in. Is called by mapViewWillStartLocatingUser
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
     {
-        
+        let span=MKCoordinateSpanMake(1,1)
+        let region=MKCoordinateRegionMake(userLocation.coordinate,span)
+        mapView.setRegion(region, animated: true)
     }
     
+    
+    /* mapViewWillStartLocatingUser activates When showUserLocation is true,
+       and in this case, it checks whether it can record the current map center,
+       and if not, it removes any pins on the map. Also, sets mapView to show the
+       user location.
+    */
     func mapViewWillStartLocatingUser(_ mapView: MKMapView)
     {
         print("Start loading")
@@ -175,12 +223,21 @@ class MapViewController: UIViewController, MKMapViewDelegate,
             lastLoc = self.mapView.centerCoordinate
             lastSpan = self.mapView.region.span
         }
+        else{
+            mapView.removeAnnotation(pins[currentPin])
+        }
     }
     
+    /*mapViewWillStartLocatingUser activates When showUserLocation is false,
+      and it results in the map returning to the last location the user was at
+      on the map, before my location and pin buttons were pushed.
+    */
     func mapViewDidStopLocatingUser(_ mapView: MKMapView)
     {
         print("Stop loading")
-        mapView.setCenter(lastLoc, animated: true)
+        let span=MKCoordinateSpanMake(lastSpan.latitudeDelta,lastSpan.longitudeDelta)
+        let region=MKCoordinateRegionMake(lastLoc, span)
+        mapView.setRegion(region, animated: true)
     }
 }
 
