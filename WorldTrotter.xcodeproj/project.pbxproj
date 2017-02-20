@@ -17,6 +17,7 @@
 		B2C8D3311E3EA2E700519750 /* WorldTrotterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8D3301E3EA2E700519750 /* WorldTrotterTests.swift */; };
 		B2C8D33C1E3EA2E700519750 /* WorldTrotterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8D33B1E3EA2E700519750 /* WorldTrotterUITests.swift */; };
 		B2C8D34A1E3EC00300519750 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8D3491E3EC00300519750 /* ConversionViewController.swift */; };
+		B717460C1E5B582B00A8C7E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B717460E1E5B582B00A8C7E3 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		B2C8D33B1E3EA2E700519750 /* WorldTrotterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTrotterUITests.swift; sourceTree = "<group>"; };
 		B2C8D33D1E3EA2E700519750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2C8D3491E3EC00300519750 /* ConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversionViewController.swift; path = ../ConversionViewController.swift; sourceTree = "<group>"; };
+		B717460D1E5B582B00A8C7E3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B717460F1E5B583700A8C7E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 				B2C8D3491E3EC00300519750 /* ConversionViewController.swift */,
 				B239F1E81E4AC01800B31150 /* MapViewController.OpenMapViewController.swift */,
 				B239F1EA1E4ACB1800B31150 /* WebViewController.OpenWebViewController.swift */,
+				B717460E1E5B582B00A8C7E3 /* Localizable.strings */,
 			);
 			path = WorldTrotter;
 			sourceTree = "<group>";
@@ -253,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2C8D3261E3EA2E700519750 /* LaunchScreen.storyboard in Resources */,
+				B717460C1E5B582B00A8C7E3 /* Localizable.strings in Resources */,
 				B2C8D3231E3EA2E700519750 /* Assets.xcassets in Resources */,
 				B2C8D3211E3EA2E700519750 /* Main.storyboard in Resources */,
 			);
@@ -334,6 +339,15 @@
 				B2C8D3251E3EA2E700519750 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B717460E1E5B582B00A8C7E3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B717460D1E5B582B00A8C7E3 /* es */,
+				B717460F1E5B583700A8C7E3 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
