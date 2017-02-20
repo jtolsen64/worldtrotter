@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Farenheit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4v-qo-6L8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Farenheit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4v-qo-6L8">
                                 <rect key="frame" x="45" y="120" width="286" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="0.88235294117647056" green="0.34509803921568627" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is really" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YI-Q4-Q7z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is really" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YI-Q4-Q7z">
                                 <rect key="frame" x="128" y="171" width="119" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -47,13 +48,13 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Wih-Sm-F2F"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cg9-v8-1HA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cg9-v8-1HA">
                                 <rect key="frame" x="129" y="222" width="117" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <color key="textColor" red="0.88235294117647056" green="0.34509803921568627" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Celsius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vl0-lF-9BJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Celsius" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vl0-lF-9BJ">
                                 <rect key="frame" x="61" y="314" width="254" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="0.88235294117647056" green="0.34509803921568627" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,9 +65,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="v4v-qo-6L8" firstAttribute="top" secondItem="MLb-zR-cbX" secondAttribute="bottom" constant="8" id="0Vc-it-lTt"/>
+                            <constraint firstItem="cg9-v8-1HA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4ic-5f-MXu"/>
                             <constraint firstItem="v4v-qo-6L8" firstAttribute="top" secondItem="MLb-zR-cbX" secondAttribute="bottom" constant="8" id="8YJ-I1-O9C"/>
                             <constraint firstItem="vl0-lF-9BJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Ze-W8-zr0"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="cg9-v8-1HA" secondAttribute="trailing" id="9rv-ec-yrh"/>
                             <constraint firstItem="MLb-zR-cbX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="A5S-jf-t7m"/>
+                            <constraint firstItem="MLb-zR-cbX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EKG-ac-k1d"/>
                             <constraint firstItem="cg9-v8-1HA" firstAttribute="top" secondItem="8YI-Q4-Q7z" secondAttribute="bottom" constant="8" id="Ec8-Md-z5d"/>
                             <constraint firstItem="MLb-zR-cbX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="GLb-ct-xmu"/>
                             <constraint firstItem="MLb-zR-cbX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JYe-OY-i8S"/>
@@ -77,12 +81,19 @@
                             <constraint firstItem="cg9-v8-1HA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UAM-s1-Ito"/>
                             <constraint firstItem="v4v-qo-6L8" firstAttribute="top" secondItem="MLb-zR-cbX" secondAttribute="bottom" constant="8" id="VRx-RG-mfJ"/>
                             <constraint firstItem="v4v-qo-6L8" firstAttribute="centerX" secondItem="MLb-zR-cbX" secondAttribute="centerX" id="XlW-Mj-wsg"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="v4v-qo-6L8" secondAttribute="trailing" id="Ykr-QH-l42"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="8YI-Q4-Q7z" secondAttribute="trailing" id="ZqO-30-B42"/>
+                            <constraint firstItem="8YI-Q4-Q7z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bJG-y5-F7v"/>
+                            <constraint firstItem="v4v-qo-6L8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cv7-Fh-hBv"/>
                             <constraint firstItem="cg9-v8-1HA" firstAttribute="centerX" secondItem="8YI-Q4-Q7z" secondAttribute="centerX" id="fJh-iP-k7W"/>
                             <constraint firstItem="8YI-Q4-Q7z" firstAttribute="top" secondItem="v4v-qo-6L8" secondAttribute="bottom" constant="8" id="g5V-Kh-Yhh"/>
                             <constraint firstItem="vl0-lF-9BJ" firstAttribute="centerX" secondItem="8YI-Q4-Q7z" secondAttribute="centerX" id="hiH-9d-w5b"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="MLb-zR-cbX" secondAttribute="trailing" id="hrc-RC-GG9"/>
+                            <constraint firstItem="vl0-lF-9BJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jf0-Yd-Q7v"/>
                             <constraint firstItem="vl0-lF-9BJ" firstAttribute="top" secondItem="cg9-v8-1HA" secondAttribute="bottom" constant="8" id="qdV-Ex-NqI"/>
                             <constraint firstItem="MLb-zR-cbX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="tw2-4c-4Cv"/>
                             <constraint firstItem="MLb-zR-cbX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vB0-d3-awd"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vl0-lF-9BJ" secondAttribute="trailing" id="vgk-lB-ez9"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="GFA-At-Lje" appends="YES" id="CMP-dh-8qf"/>
@@ -144,10 +155,10 @@
         <!--Map-->
         <scene sceneID="xmc-gH-XFx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dPo-II-bJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kQ4-ld-1lD" customClass="MapViewController" customModule="WorldTrotter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="xHd-Bx-Tjp"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPo-II-bJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="-1060"/>
         </scene>
